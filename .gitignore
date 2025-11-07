@@ -1,0 +1,44 @@
+# OS
+.DS_Store
+
+# Virtual envs
+.venv/
+.env/
+.python-version
+
+# Python cache/bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Test & coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Linters/type checkers
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# IDE/editor
+.idea/
+.vscode/
+
+# UV
+.uv/
+
+__pycache__/
+.pytest_cache/
+.nox/
+.venv/
+.coverage
+dist/
+build/
+*.egg-info/

@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shopifyql"
+version = "0.1.0"
+description = "Python SDK and utilities for ShopifyQL queries"
+readme = "README.md"
+requires-python = ">=3.11,<4"
+license = { file = "LICENSE.md" }
+authors = [{ name = "Shopify Inc.", email = "opensource@shopify.com" }]
+dependencies = ["requests>=2.32"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python",
+    "Topic :: Software Development :: Libraries",
+]
+keywords = ["Shopify", "ShopifyQL", "analytics", "ecommerce"]
+
+[dependency-groups]
+dev = ["ipdb==0.13.13", "ipython==9.0.2"]
+lint = ["pyright>=1.1.405", "ruff==0.9.10"]
+test = ["pytest-mock>=3.14.0", "pytest==8.3.5"]
+
+[project.optional-dependencies]
+pandas = ["pandas>=2.2"]
+polars = ["polars>=1.0"]
+all = ["pandas>=2.2", "polars>=1.0"]
+
+[tool.hatch.version]
+path = "src/shopifyql/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shopifyql"]
+
+[tool.hatch.build.targets.sdist]
+include = ["CHANGELOG.md", "CODE_OF_CONDUCT.md", "CONTRIBUTING.md", "LICENSE.md", "README.md", "src/shopifyql"]
