@@ -1,0 +1,35 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+      
+      - name: Build package
+        run: |
+          uv build
+      
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: shopify
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD_SHOPIFY }}
+        run: |
+          uv tool run twine upload dist/*
+
