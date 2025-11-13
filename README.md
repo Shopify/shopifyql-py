@@ -17,7 +17,7 @@ shopify app init --template=https://github.com/Shopify/shopify-app-notebooks-tem
 ```
 
 This template will:
-- Set up a Python 3.13 environment with all dependencies needed to run `shopifyql` inside Jupyter notebooks
+- Set up a Python 3.11+ environment with all dependencies needed to run `shopifyql` inside Jupyter notebooks
 - Handle app configuration and authentication automatically
 - Provide a ready-to-use development environment powered by Shopify CLI
 
