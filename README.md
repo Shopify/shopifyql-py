@@ -70,7 +70,7 @@ from shopifyql import ShopifyQLClient
 
 client = ShopifyQLClient(shop="your-shop", access_token="shpat_...")
 
-records = client.query("FROM sales SHOW total_sales SINCE 2025-01-01 UNTIL 2025-01-31")
+records = client.query("FROM sales SHOW total_sales SINCE 2025-01-01 UNTIL 2025-12-31")
 print(records[:2])  # e.g., [{"total_sales": 123.45}, {"total_sales": 67.89}]
 ```
 
