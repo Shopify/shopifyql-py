@@ -27,7 +27,10 @@ class ShopifyQLRecordsResult(ShopifyQLResult):
 
     @classmethod
     def from_table_data(cls, table_data: dict[str, Any]) -> list[dict[str, Any]]:
-        return table_data.get("rows", [])
+        columns = table_data.get("columns", [])
+        rows = table_data.get("rows", [])
+        column_names = [c.get("name") for c in columns]
+        return [dict(zip(column_names, row)) for row in rows]
 
 
 class ShopifyQLPandasResult(ShopifyQLResult):
@@ -161,5 +164,7 @@ class ShopifyQLPolarsResult(ShopifyQLResult):
                 "polars is not installed. Install with 'pip install shopifyql[polars]' or 'pip install polars'."
             ) from e
 
+        column_names = [str(c.get("name", "")) for c in table_data["columns"]]
         data_types = cls._polars_dtypes_from_columns(table_data["columns"])
-        return pl.from_records(table_data["rows"], schema=data_types)
+        df = pl.DataFrame(table_data["rows"], schema=column_names, orient="row")
+        return df.cast(data_types)

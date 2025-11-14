@@ -26,7 +26,7 @@ See the [template repository](https://github.com/Shopify/shopify-app-notebooks-t
 ## Requirements
 
 - Python 3.11+
-- A Shopify `shop` (e.g., `your-shop-name`) and an Admin API access token with `read_reports, read_analytics` scopes.
+- A Shopify `shop` (e.g., `your-shop-name`) and an Admin API access token with access to the `read_reports` scope.
 
 ## Installation
 
@@ -120,8 +120,7 @@ df = client.query_pandas("FROM sales SHOW total_sales SINCE -7d")
 ```
 
 ### Steps for oauth
-
-- Scopes required are `read_reports,read_analytics` scopes can be modified in your app version settings: https://dev.shopify.com/dashboard/ -> Your App -> Versions -> Create a version
+- Requires read_reports access scope. Also: Level 2 access to Customer data including name, address, phone, and email fields. Please refer to https://shopify.dev/docs/apps/launch/protected-customer-data. Scopes caan be modified in your app version settings: https://dev.shopify.com/dashboard/ -> Your App -> Versions -> Create a version
 - A valid redirect_uri is needed for this oauth flow to work, please use `http://localhost:4545/callback`
 - You can only receive scopes that are enabled in your app settings, if you need more you will want to submit a new app version.
 - If your browser lands on `admin.shopify.com/.../oauth/authorize` and the helper never returns to `http://localhost:4545/callback`, your app’s Redirect URLs probably don’t include the exact `redirect_uri`. Add `http://localhost:4545/callback` (or the port you pass, configurable in from_oauth) to App setup → Redirect URLs, then try again. The `redirect_uri` must match exactly.
