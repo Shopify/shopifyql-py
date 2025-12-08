@@ -8,8 +8,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: pypi
     permissions:
       contents: read
+      id-token: write
     
     steps:
       - uses: actions/checkout@v4
@@ -27,9 +29,5 @@ jobs:
           uv build
       
       - name: Publish to PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD_SHOPIFY }}
-        run: |
-          uv tool run twine upload dist/*
+        uses: pypa/gh-action-pypi-publish@release/v1
 
